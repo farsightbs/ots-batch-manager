@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OTS Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <img src="assets/logo.png" alt="" class="logo" />
+    <div class="brand">OTS Manager<span>OpenTimestamp Manager</span></div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="create" class="active" data-i18n="tab.create"></button>
+      <button role="tab" data-tab="upgrade" data-i18n="tab.upgrade"></button>
+      <button role="tab" data-tab="verify" data-i18n="tab.verify"></button>
+    </nav>
+    <button class="icon-btn" id="open-settings" data-i18n-title="settings" aria-label="Settings">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <!-- CREATE -->
+    <section class="panel active" id="panel-create" role="tabpanel">
+      <div class="toolbar">
+        <button data-act="add-files" data-i18n="btn.addFiles"></button>
+        <button data-act="add-folder" data-i18n="btn.addFolder"></button>
+        <label class="opt"><input type="checkbox" id="opt-same-dir" /> <span data-i18n="opt.sameDir"></span></label>
+        <span class="spacer"></span>
+        <button data-act="clear" data-i18n="btn.clear"></button>
+        <button class="primary" id="run-create" data-i18n="btn.create"></button>
+      </div>
+      <div class="area">
+        <div class="dropzone"><strong data-i18n="drop.create"></strong><span data-i18n="drop.or"></span></div>
+        <table>
+          <thead><tr><th class="c-icons"></th><th data-i18n="col.file"></th><th data-i18n="col.folder"></th><th data-i18n="col.status"></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <footer class="status-bar"><span class="summary"></span><progress hidden></progress><span class="progress-text"></span></footer>
+    </section>
+
+    <!-- UPGRADE -->
+    <section class="panel" id="panel-upgrade" role="tabpanel">
+      <div class="toolbar">
+        <button data-act="add-files" data-i18n="btn.addFiles"></button>
+        <button data-act="add-folder" data-i18n="btn.addFolder"></button>
+        <label class="opt"><input type="checkbox" id="opt-backup" /> <span data-i18n="opt.backup"></span></label>
+        <span class="spacer"></span>
+        <button data-act="clear" data-i18n="btn.clear"></button>
+        <button class="primary" id="run-upgrade" data-i18n="btn.upgrade"></button>
+      </div>
+      <div class="area">
+        <div class="dropzone"><strong data-i18n="drop.upgrade"></strong><span data-i18n="drop.or"></span></div>
+        <table>
+          <thead><tr><th class="c-icons"></th><th data-i18n="col.file"></th><th data-i18n="col.folder"></th><th data-i18n="col.status"></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <footer class="status-bar"><span class="summary"></span><progress hidden></progress><span class="progress-text"></span></footer>
+    </section>
+
+    <!-- VERIFY -->
+    <section class="panel" id="panel-verify" role="tabpanel">
+      <div class="toolbar">
+        <button data-act="add-files" data-i18n="btn.addFiles"></button>
+        <button data-act="add-folder" data-i18n="btn.addFolder"></button>
+        <span class="spacer"></span>
+        <button data-act="clear" data-i18n="btn.clear"></button>
+      </div>
+      <div class="area">
+        <div class="dropzone"><strong data-i18n="drop.verify"></strong><span data-i18n="drop.or"></span></div>
+        <table>
+          <thead><tr>
+            <th class="c-icons"></th><th data-i18n="col.original"></th><th data-i18n="col.format"></th>
+            <th data-i18n="col.otsDetected"></th><th data-i18n="col.otsStatus"></th><th data-i18n="col.hash"></th><th data-i18n="col.check"></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <footer class="status-bar"><span class="summary"></span><span class="unassigned"></span><progress hidden></progress><span class="progress-text"></span></footer>
+    </section>
+  </main>
+
+  <!-- Assign OTS dialog -->
+  <dialog id="assign-dialog">
+    <h2 id="assign-title"></h2>
+    <h3 data-i18n="assign.unassigned"></h3>
+    <ul id="assign-list"></ul>
+    <p class="muted" id="assign-none" data-i18n="assign.none"></p>
+    <div class="dialog-drop"><span data-i18n="assign.hint"></span> <button id="assign-load" data-i18n="btn.load"></button></div>
+    <div class="dialog-actions"><button id="assign-close" data-i18n="btn.close"></button></div>
+  </dialog>
+
+  <!-- Settings dialog -->
+  <dialog id="settings-dialog">
+    <h2 data-i18n="settings"></h2>
+    <label class="field"><span data-i18n="settings.language"></span><select id="set-lang"></select></label>
+    <label class="field"><span data-i18n="settings.calendars"></span><textarea id="set-calendars" rows="4" spellcheck="false"></textarea></label>
+    <label class="field"><span data-i18n="settings.explorers"></span><textarea id="set-explorers" rows="3" spellcheck="false"></textarea>
+      <small class="muted" data-i18n="settings.explorersHint"></small></label>
+    <div class="dialog-actions">
+      <button id="settings-reset" data-i18n="btn.reset"></button>
+      <span class="spacer"></span>
+      <button id="settings-close" data-i18n="btn.close"></button>
+      <button class="primary" id="settings-save" data-i18n="btn.save"></button>
+    </div>
+  </dialog>
+
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
